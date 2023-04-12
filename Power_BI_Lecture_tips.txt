@@ -1,0 +1,63 @@
+1. For appending all the files in the folder (assuming they share the same structure), Get Data>More>Folder 
+As you add new files, simply refresh query and they will automatically append
+
+2. How to customize the Refresh option?
+exclude queries that don't change often, like lookups or static data tables
+For that in power query editor, right click on table and uncheck the "include in report refresh" option 
+
+3. change date format, continent, country data types from data view
+
+Data vs Lookup tables: Data tables contains number and values with ID or key columns 
+Lookup tables provide descriptive, text-based attributes about each dimension in a table
+
+Primary vs foreign keys:
+Primary -they uniquely identify each row of a table, and match the foreign keys in related data tables 
+Foreign= they contain multiple instances of each value, and are used to match the primary keys in related lookup tables
+
+Cardinality ->uniqueness of values in a column,"one to many" cardinality
+
+
+Never create direct relationships between data tables, instead, connect them through shared lookups
+Arrange your lookup tables above your data tables in your model as a visual remainder that filters flow downstream (kategoriyani lookup table-dan gotur)
+
+
+Two-way filters are used when we have multiple data tables in the model: for example returns and sales
+Design your models with one-way filters and 1-to-many cardinality, unless mode complex relationships are necessary.
+
+Hide foreign key columns in your data tables to force users to filter by primary keys in the lookup tables
+
+Best practices of data modelling:
+1. Each table should serve a single, distinct purpose
+2. Long and narrow tables are better than short&wide
+3.Organize lookups above data tables
+
+Calculated columns:
+Use calculated columns when you want to stamp static,fixed values to each row in a table.
+Do not use calculated columns for aggregation formulas, or to calculate fields for the Values area of visualization. (use measures instead)
+
+Measures:
+Unlike calculated columns, measure values aren't visible within tables; they can only be seen within a visualization like a chart or matrix.
+Use measures, when a single row can't give you an answer. (in other words when you need to aggregate)
+Use measures to create numerical, calculated values that can be analyzed in the values of report visual
+
+Implicit vs Explicit measures
+Implicit measures -> when you drag numerical field into values pane of visual and manually select the aggregation mode.
+Explicit measures -> when you enter DAX functions to define calculated columns or measures
+
+&- concatenates two values to produce one text string
+&& - and 
+|| - or 
+in - created a logical OR condition based on a given list (using curly brackets) IN {}
+
+Related ->Vlookup
+Counta-> count non-empty cells
+distinctcount ->count unique
+Countrows(table)> number of rows in table
+
+
+CALCULATE works just like SUMIF or COUNTIF in Excel, except it can evaluate measures based on ANY
+sort of calculation (not just a sum, count, etc); it may help to think of it like “CALCULATEIF”
+
+calculate all mainly for proportions % of total
+
+sumx (sum expression) -> iterate through all rows , then apply aggregation
